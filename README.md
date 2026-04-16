@@ -1,59 +1,43 @@
-# store-admin
+# Best Buy – Store Admin
 
-This is a Vue.js app that simulates a store admin portal where users can manually process orders, and manage products. It is meant to be used in conjunction with the product-service and makeline-service.
+This is the employee-facing administration web application for the **Best Buy Cloud-Native Final Project**.
 
-## Running the app locally
+The Store Admin application is used by Best Buy staff to manage store operations, including
+monitoring orders and interacting with backend services.
+
+It is part of a microservices-based architecture deployed on **Azure Kubernetes Service (AKS)**.
+
+This project is adapted from the **Algonquin Pet Store (On Steroids)** reference architecture
+and has been rebranded and extended for the Best Buy cloud-native final project in CST8915.
+
+---
+
+## Architecture Context
+
+The Store Admin service communicates with backend services such as:
+- **Order Service** – to view and manage customer orders
+- **Makeline Service** – to track order processing
+- **RabbitMQ** – for asynchronous messaging
+
+All services are containerized and orchestrated using Kubernetes.
+
+---
+
+## Running the App Locally (Optional)
+
+> ⚠️ Local execution is for development and testing only.  
+> In production, this service runs inside Kubernetes (AKS).
 
 ### Prerequisites
+- Node.js  
+- Docker  
+- Docker Compose  
 
-- [Node.js](https://nodejs.org/en/download/)
-- [Vue CLI Service](https://cli.vuejs.org/guide/cli-service.html)
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-- [OpenAI API Key](https://beta.openai.com/docs/developer-quickstart/your-api-keys)
-- [Azure OpenAI API Key](https://azure.microsoft.com/products/cognitive-services/openai-service/)
+### Local Development
 
-### Running the app
-To run the necessary services, clone the repo, open a terminal, and navigate to the repo directory.
-
-If you have access to OpenAI or Azure OpenAI, open the `docker-compose.yml` file, uncomment the `ai-services` block, and add your OpenAI or Azure OpenAI credentials.
-
-> IMPORTANT: When filling in the values, do not put the value in double-quotes.
-
-```yaml
-environment:
-  - USE_AZURE_OPENAI=True # set to False if you are not using Azure OpenAI
-  - AZURE_OPENAI_DEPLOYMENT_NAME= # required if using Azure OpenAI
-  - AZURE_OPENAI_ENDPOINT= # required if using Azure OpenAI
-  - OPENAI_API_KEY= # always required
-  - OPENAI_ORG_ID= # required if using OpenAI
-```
-
-Then run the following command:
+The Store Admin application can be run locally using Docker Compose
+alongside the required backend services.
 
 ```bash
 docker compose up
-```
-
-With the services running, open a new terminal and navigate to the `store-admin` directory. Then run the following commands:
-
-```bash
-export VUE_APP_PRODUCT_SERVICE_URL=http://localhost:3002/
-export VUE_APP_MAKELINE_SERVICE_URL=http://localhost:3001/
-
-npm install
-npm run serve
-```
-
-When the app is running, you should see output similar to the following:
-
-```text
-  App running at:
-  - Local:   http://localhost:8081/ 
-  - Network: http://192.168.0.144:8081/
-
-  Note that the development build is not optimized.
-  To create a production build, run npm run build.
-```
-
-Open a browser and navigate to `http://localhost:8081/`. You should see the store admin app running.
+``
