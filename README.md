@@ -40,4 +40,4 @@ alongside the required backend services.
 
 ```bash
 docker compose up
-``
+`` 
